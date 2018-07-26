@@ -8,6 +8,9 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 COPY ./conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
+RUN mkdir /var/log/php \
+    && chown www-data:www-data /var/log/php
+
 # phpunit
 RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar \
     && chmod +x phpunit \
